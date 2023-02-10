@@ -4,7 +4,7 @@ import { Grid, GridItem } from './ui/Grid';
 
 function App() {
   return (
-    <Grid>
+    <Grid templateColumns={'20% 80%'}>
       <GridItem>
         <Navbar />
       </GridItem>
