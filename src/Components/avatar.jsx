@@ -1,3 +1,9 @@
+import { Text } from '../ui/Text';
+
 export const Avatar = () => {
-    return <div>Avatar</div>;
-  };
+  return (
+    <div>
+      <Text>Avatar</Text>
+    </div>
+  );
+};
