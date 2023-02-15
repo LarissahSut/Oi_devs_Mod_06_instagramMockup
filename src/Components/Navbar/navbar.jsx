@@ -24,9 +24,9 @@ export const Navbar = (props) => {
           {items.map((item) => (
             <NavItem key={item} text={item} />
           ))}
-          <NavItem text={'Mais'} />
         </S.Box>
       </S.Box>
+      <NavItem text={'Mais'} />
     </S.NavBarWrapper>
   );
 };

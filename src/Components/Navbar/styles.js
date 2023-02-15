@@ -6,11 +6,10 @@ export const NavBarWrapper = styled.div`
   justify-content: space-between;
   background-color: #000;
   height: 100%;
-  width: calc(20% - 60px);
+  width: 20%;
   position: fixed;
   padding: 50px 30px;
 `;
 
 export const Box = styled.div`
-  margin-bottom: 30px;
 `;
