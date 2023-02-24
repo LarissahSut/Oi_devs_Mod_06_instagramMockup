@@ -13,9 +13,10 @@ export const Item = styled.div`
   height: 293px;
   margin-bottom: 28px;
   cursor: pointer;
-  img {
-    width: 100%;
-    height: 293px;
-    object-fit: cover;
-  }
+`;
+
+export const Image = styled.img`
+  width: 100%;
+  height: 293px;
+  object-fit: cover;
 `;
