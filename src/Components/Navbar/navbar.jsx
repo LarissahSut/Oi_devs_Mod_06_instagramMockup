@@ -1,19 +1,26 @@
-import { Title } from '../title';
-import { NavItem } from '../nav-item';
-import * as S from './styles';
+import { Title } from "../title";
+import { NavItem } from "../nav-item";
+import * as S from "./styles";
+import { InstaContext } from "../../App";
+import React, { createContext } from "react";
 
 const items = [
-  'Página Inicial',
-  'Pesquisa',
-  'Explorar',
-  'Reels',
-  'Mensagens',
-  'Notificações',
-  'Criar',
-  'Perfil',
+  "Página Inicial",
+  "Pesquisa",
+  "Explorar",
+  "Reels",
+  "Mensagens",
+  "Notificações",
+  "Criar",
+  "Perfil",
 ];
 
-export const Navbar = (props) => {
+export const Navbar = () => {
+  const {meuState, meuDispatch} = React.useContext(InstaContext);
+
+  const onClickLoginButtonHandler = () => {
+    meuDispatch({ type: "change_current_page", payload: "login" });
+  };
   return (
     <S.NavBarWrapper>
       <S.Box>
@@ -26,7 +33,8 @@ export const Navbar = (props) => {
           ))}
         </S.Box>
       </S.Box>
-      <NavItem text={'Mais'} />
+      <NavItem onClick={onClickLoginButtonHandler} text={"Ir para o login"} />
+      <NavItem text={"Mais"} />
     </S.NavBarWrapper>
   );
 };

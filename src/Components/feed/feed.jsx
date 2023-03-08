@@ -1,20 +1,23 @@
-import { useEffect, useState } from 'react';
-import { Loading } from '../../ui/loading';
-import { fetcher } from '../../services';
-import * as S from './styles';
-import { Text } from '../../ui/Text';
+import React, { useEffect, useState } from "react";
+import { Loading } from "../../ui/loading";
+import { fetcher } from "../../services";
+import * as S from "./styles";
+import { Text } from "../../ui/Text";
+import { InstaContext } from "../../App";
 
 export const Feed = () => {
-  const [items, setItems] = useState([]);
+  const state = React.useContext(InstaContext);
+  console.log(state.meuState)
+
   const [isLoading, setIsLoading] = useState(false);
   const [hasError, setHasError] = useState(false);
 
   useEffect(() => {
     const makeRequest = async () => {
+      setIsLoading(true);
       try {
-        setIsLoading(true);
-        const response = await fetcher('photos');
-        setItems(response);
+        const response = await fetcher("photos");
+        state.meuDispatch({ type: "add_photos_user", payload: response });
       } catch (error) {
         setHasError(true);
       } finally {
@@ -25,12 +28,17 @@ export const Feed = () => {
     makeRequest();
   }, []);
 
+  const handleImageClick = (imageId) => {
+    state.meuDispatch({type: "add_highlight_image", payload: imageId})
+    state.meuDispatch({type: "change_current_page", payload: "fullscreen"})
+  }
+
   return (
     <S.Wrapper>
-      {isLoading && <Loading/>}
+      {isLoading && <Loading />}
       {hasError && <Text>Epa, deu ruim</Text>}
-      {items.map((item) => (
-        <S.Item key={item.id}>
+      {state.meuState.user.photos?.map((item, index) => (
+        <S.Item key={index} onClick={() => handleImageClick(item?.id)}>
           <S.Image src={item.urls.small} />
         </S.Item>
       ))}
